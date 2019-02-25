@@ -174,8 +174,7 @@ public class PaseoCaballo {
                             
                             int puntajeActualFinal= 9;
                             int puntajeGanadorFinal =9;
-                            int movActualFinal;
-                            int movGanadorFinal;
+                            
                             for(int sgtMov = 0; sgtMov < 8; sgtMov++)
                             {
                                 //mov me da la posicion actual del caballo que empata con la posible posicion
@@ -202,7 +201,7 @@ public class PaseoCaballo {
                                         if(puntajeMovActual < puntajeActualFinal)
                                         {
                                             puntajeActualFinal = puntajeMovActual;
-                                            movActualFinal = sgtMov;
+                                            
                                         }
                                         
                                         
@@ -227,7 +226,7 @@ public class PaseoCaballo {
                                         if(puntajeMovActualGanador < puntajeGanadorFinal)
                                         {
                                             puntajeGanadorFinal = puntajeMovActualGanador;
-                                            movGanadorFinal = sgtMov;
+                                            
                                         }
                                         
                                     }

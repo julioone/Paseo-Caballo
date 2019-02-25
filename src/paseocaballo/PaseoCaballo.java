@@ -165,13 +165,97 @@ public class PaseoCaballo {
                     }
                     else
                     {
+                        
                         //aqui si se toma como un movimiento valido y compite con otros para escoger el mejor movimiento.
+                        
                         int puntajeActual = tablaAccesibilidad[filaActual+verticalMov[mov]][columnaActual+horizontalMov[mov]];
-                        if(puntajeActual < puntajeFinal)
+                        if(puntajeActual == puntajeFinal)
                         {
-                            puntajeFinal = puntajeActual;
-                            mov_escogido = mov;
+                            
+                            int puntajeActualFinal= 9;
+                            int puntajeGanadorFinal =9;
+                            int movActualFinal;
+                            int movGanadorFinal;
+                            for(int sgtMov = 0; sgtMov < 8; sgtMov++)
+                            {
+                                //mov me da la posicion actual del caballo que empata con la posible posicion
+                                //movEscogido me da la posicion ganadora actual 
+                                // actuan como columna y fila actual.
+                                //tambien validar el futuro mov si es valido.
+                                
+                                if ((filaActual+verticalMov[mov]+verticalMov[sgtMov] < 0 || filaActual+verticalMov[mov]+verticalMov[sgtMov] > 7) || 
+                                        (columnaActual+horizontalMov[mov]+ horizontalMov[sgtMov] < 0 || columnaActual+horizontalMov[mov]+horizontalMov[sgtMov] > 7))
+                                {
+                                    //movimiento invalido
+                                
+                                }
+                                else
+                                {
+                                    if(tableroAjedrez[filaActual+verticalMov[mov]+verticalMov[sgtMov]][columnaActual+horizontalMov[mov]+horizontalMov[sgtMov]] != 0)
+                                        {
+                                            //tampoco sirve un movimiento a una casilla ya visitada.
+                        
+                                        }
+                                    else
+                                    {
+                                        int puntajeMovActual = tablaAccesibilidad[filaActual+verticalMov[mov]+verticalMov[sgtMov]][columnaActual+horizontalMov[mov]+horizontalMov[sgtMov]];
+                                        if(puntajeMovActual < puntajeActualFinal)
+                                        {
+                                            puntajeActualFinal = puntajeMovActual;
+                                            movActualFinal = sgtMov;
+                                        }
+                                        
+                                        
+                                    }
+                                    
+                                }
+                                if ((filaActual+verticalMov[mov_escogido]+verticalMov[sgtMov] < 0 || filaActual+verticalMov[mov_escogido]+verticalMov[sgtMov] > 7) || 
+                                        (columnaActual+horizontalMov[mov_escogido]+ horizontalMov[sgtMov] < 0 || columnaActual+horizontalMov[mov_escogido]+horizontalMov[sgtMov] > 7))
+                                {
+                                    //movimiento invalido
+                                }
+                                else
+                                {
+                                    if(tableroAjedrez[filaActual+verticalMov[mov_escogido]+verticalMov[sgtMov]][columnaActual+horizontalMov[mov_escogido]+horizontalMov[sgtMov]] != 0)
+                                        {
+                                            //tampoco sirve un movimiento a una casilla ya visitada.
+                        
+                                        }
+                                    else
+                                    {
+                                        int puntajeMovActualGanador = tablaAccesibilidad[filaActual+verticalMov[mov_escogido]+verticalMov[sgtMov]][columnaActual+horizontalMov[mov_escogido]+horizontalMov[sgtMov]];
+                                        if(puntajeMovActualGanador < puntajeGanadorFinal)
+                                        {
+                                            puntajeGanadorFinal = puntajeMovActualGanador;
+                                            movGanadorFinal = sgtMov;
+                                        }
+                                        
+                                    }
+                                    
+                                }
+                                
+                                
+                                
+                                
+                            }
+                            if(puntajeActualFinal < puntajeGanadorFinal)
+                            {
+                                //es porque el nuevo movivimiento que empate puede ser mejor que el actual;
+                                mov_escogido = mov;
+                                
+                            }
                         }
+                        else
+                        {
+                            if(puntajeActual < puntajeFinal)
+                            {
+                                puntajeFinal = puntajeActual;
+                                mov_escogido = mov;
+                            }
+                            
+                          
+                        }
+                        
                         
                     }
                     //
